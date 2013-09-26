@@ -1,0 +1,25 @@
+
+
+#intervalEnabler {
+	float:right;
+	background-color:black;
+	height:auto;
+	width:auto;
+	padding: 9px 10px 9px 10px;
+	border-radius:10px;
+
+}
+
+
+.button {
+	font-family:fantasy;
+	font-weight:bold;
+	text-align:center;
+	background-color:blue;
+	margin:5px 0px 5px 0px;
+	width:auto;
+	padding:10px;
+	border:3px solid rgba(200,150,20,1);
+	border-radius:10px;
+
+}
