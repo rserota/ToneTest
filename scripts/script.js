@@ -25,61 +25,61 @@ var tones = [
 ];
 
 
-var enabledIntervals = {
-	second: [true,1],
-	SECOND: [true,2],
-	third: [true,3],
-	THIRD: [true,4],
-	Fourth: [true,5],
-	Fifth: [true,7],
-	sixth: [true,8],
-	SIXTH: [true,9],
-	seventh: [true,10],
-	SEVENTH: [true,11],
-	Octave: [true,12]
-};
+var enabledIntervals = [
+	[true,1],
+	[true,2],
+	[true,3],
+	[true,4],
+	[true,5],
+	[true,7],
+	[true,8],
+	[true,9],
+	[true,10],
+	[true,11],
+	[true,12]
+];
 
 var size2KeyCode = function(size){
-	if (size) === 1{
+	if (size === 1){
 		return 81
 	}
-	else if (size) === 2{
+	else if (size === 2){
 		return 50
 	}
-	else if (size) === 3{
+	else if (size === 3){
 		return 87
 	}
-	else if (size) === 4{
+	else if (size === 4){
 		return 51
 	}
-	else if (size) === 5{
+	else if (size === 5){
 		return 52
 	}
-	else if (size) === 7{
+	else if (size === 7){
 		return 53
 	}
-	else if (size) === 8{
+	else if (size === 8){
 		return 84
 	}
-	else if (size) === 9{
+	else if (size === 9){
 		return 54
 	}
-	else if (size) === 10{
+	else if (size === 10){
 		return 89
 	}
-	else if (size) === 11{
+	else if (size === 11){
 		return 55
 	}
-	else if (size) === 12{
+	else if (size === 12){
 		return 56
 	}
 
 }
 
-var definePossibilities = function(intervalsObject){
+var definePossibilities = function(intervalsArray){
 	possibilities = []
-    for (var key in intervalsObject){
-    	if (intervalsObject[key][0]===true){possibilities.push(intervalsObject[key][1])}
+    for (var i = 0; i < intervalsArray.length; i++){
+    	if (intervalsArray[i][0]===true){possibilities.push(intervalsArray[i][1])}
     }
 	return possibilities
 }
@@ -104,17 +104,46 @@ var playNotes = function(notes){
 }
 
 
+var startTime;
+
 $(document).ready(function(){
-
-	trialInfo = playNotes(pickNotes(definePossibilities(enabledIntervals)))
-	$(document).one('keydown',function(event){
-		if (event.which === size2KeyCode(trialInfo["intervalSize"])){
+    var trialLoop = function(){
+    	
+    	setInterval(function(){
+    		$(".timer").text(new Date() - startTime)
+    	},250)
+		trialInfo = playNotes(pickNotes(definePossibilities(enabledIntervals)))
+		$(document).one('keydown',function(event){
+			if (event.which === size2KeyCode(trialInfo["intervalSize"])){
+				console.log("correct!")
+			}
+			else {
+				console.log("nope!")
+			}
 			clearInterval(trialInfo["intervalID"])
-		}
-	
+			if (new Date() - startTime < 30000){
+				trialLoop()
+			}
 
+		})
+	}
+
+	$(".button").on("click",function(){
+		$(this).toggleClass("on")
+		console.log($(this).index())
+		enabledIntervals[$(this).index()][0] = !enabledIntervals[$(this).index()][0]
 	})
+    
+    $(".go").on("click",function(){
+    	startTime = new Date();
+    	trialLoop()
+    })
 
+
+
+
+	
+	
 })
 
 

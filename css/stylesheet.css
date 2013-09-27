@@ -1,4 +1,8 @@
-
+* {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
 
 #intervalEnabler {
 	float:right;
@@ -10,16 +14,26 @@
 
 }
 
-
+.go {
+	background-color:green;
+	border:5px solid red;
+	border-radius:10px;
+	display:inline-block;
+}
 .button {
 	font-family:fantasy;
 	font-weight:bold;
 	text-align:center;
-	background-color:blue;
+	background-color:black;
 	margin:5px 0px 5px 0px;
 	width:auto;
 	padding:10px;
 	border:3px solid rgba(200,150,20,1);
 	border-radius:10px;
 
+}
+
+.button.on {
+	border:3px solid rgba(20,150,20,1);
+	background-color:blue;
 }
