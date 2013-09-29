@@ -2,73 +2,198 @@
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+    cursor:default;
+}
+
+body {
+	background-image: linear-gradient(left top, rgb(255,255,255) 0%, rgb(0,0,0) 100%);
+	background-image: -o-linear-gradient(left top, rgb(255,255,255) 0%, rgb(0,0,0) 100%);
+	background-image: -moz-linear-gradient(left top, rgb(255,255,255) 0%, rgb(0,0,0) 100%);
+	background-image: -webkit-linear-gradient(left top, rgb(255,255,255) 0%, rgb(0,0,0) 100%);
+	background-image: -ms-linear-gradient(left top, rgb(255,255,255) 0%, rgb(0,0,0) 100%);
+	height: 100%;
+	margin:0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#navbar {
+
+	background-color:black;
+	margin-bottom:5px;
+	transition: all .6s;
+	-webkit-transition: all .6s;
+	overflow:hidden;
+
 }
 
 #intervalEnabler {
-
+	margin:7px;
 	float:right;
-	background-color:rgba(25,25,25,.8);
+	background-color:rgba(5,5,5,.3);
 	height:auto;
 	width:auto;
 	padding: 9px 10px 9px 10px;
 	border-radius:10px;
-	box-shadow: 5px 5px 1px black;
+	border:5px solid black;
+	box-shadow: 5px 5px 1px rgba(0,0,0,.7);
 
 }
 
-#intervalEnabler * {
-		-webkit-transition:all 0.6s;
+.button {
+	transition: all 0.6s;
+	-webkit-transition:all 0.6s;
 }
 
-.go {
-	background-color:green;
-	border:5px solid red;
-	border-radius:10px;
-	display:inline-block;
-}
+
 .button {
 	font-family:fantasy;
 	font-weight:bold;
+	font-size:18px;
 	text-align:center;
-	background-color:black;
+	background-color:rgba(0,0,0,.8);
 	margin:5px 0px 5px 0px;
 	width:auto;
-	padding:7px;
-	border:3px solid rgba(200,150,20,1);
+	padding: 7px 15px 5px 15px;
+	border:4px solid rgba(200,150,20,1);
 	border-radius:10px;
 	color:ghostwhite;
 	position: relative;
-	box-shadow: 5px 5px 1px black;
+	box-shadow: 5px 5px 3px rgba(0,0,0,.7);
 
 }
 
 .button.on {
-	border:3px solid rgba(20,15,20,1);
-	background-color:rgba(90,90,255,.9);
+	border:4px solid rgba(20,15,20,1);
+	background-color:rgba(90,90,255,.8);
 	color:black;
 	top:2px;
 	left:1px;
-	box-shadow: 2px 2px 1px black;
+	box-shadow: 2px 2px 1px rgba(0,0,0,.7);
+	border-radius: 15px;
 
 }
 
+.go {
+	display: inline-block;
+	width:150px;
+	height:100px;
+	font-size:72px;
+	border-radius:50px;
+	box-shadow: 12px 12px 3px rgba(0,0,0,.7);
+	position:relative;
+}
+
+.go.on {
+	box-shadow:4px 4px 1px rgba(0,0,0,.7);
+	border-radius:50px;
+	top:8px;
+	left:3px;
+}
 .feedback {
-	background-color:black;
+	background-color:rgba(0,0,0,.9);
 	border: 10px solid black;
 	height:200px;
-	width:20px;
+	width:0px;
 	display:inline-block;
-	border-radius: 20px;
+	border-radius: 0px 20px 20px 0px;
 	position:fixed;
-	bottom:10%;
-	left:40%;
+	bottom:0%;
+	left:-1%;
+	text-align:center;
+	font-size:72px;
+	font-family:fantasy;
+	overflow:hidden;
+	box-shadow: 8px 8px 3px rgba(0,0,0,.7);
+	color:rgba(0,0,0,0);
+	-webkit-transition:all .4s;
+	transition: all .4s;
 
 }
 
 .feedback.wrong {
-
+    width:300px;
+    height:100px;
+    background-color: rgba(255,0,0,.9);
+    border-radius:30px 3000px 3000px 30px;
+    color:rgba(0,0,0,.9);
 }
 
 .feedback.right {
+    width:300px;
+    height:100px;
+    background-color: rgba(0,255,0,.9);
+    border-radius:30px 30px 3000px 30px;
+    color:rgba(0,0,0,.9);
+}
 
+.helpText {
+	width: 90%;
+	background-color:rgba(244,244,244,.85);
+	border-radius:30px 3000px 3000px 30px;
+	color: rgba(0,0,0,.9);
+	font-size:16px;
+	padding: 5px 50px 0px 5px;
+	min-height:100px;
+	height: auto;
+	overflow:none;
+}
+
+.timer,.score{
+	font-family:fantasy;
+	font-size:36px;
+	-webkit-transition:all .4s;
+	transition: all .4s;
+	display:inline-block;
+	position:fixed;
+	left:-3%;
+	border: 10px solid black;
+	border-radius: 0px 20px 20px 0px;
+	width:20px;
+	height:40px;
+	overflow:hidden;
+	text-align:center;
+	box-shadow: 8px 8px 3px rgba(0,0,0,.7);
+	background-color:rgba(0,0,0,1);
+}
+.score {
+	top:30%;
+}
+.help {
+	-webkit-transition:all .4s;
+	transition: all .4s;
+	display:inline-block;
+	border: 5px solid ghostwhite;
+	border-radius: 1000px;
+	float:right;
+/*	height:40px;*/
+
+	text-align:center;
+	box-shadow: 8px 8px 3px rgba(0,0,0,.7);
+	background-color:rgba(0,0,0,1);
+	color:ghostwhite;
+	margin:10px;
+	font-family:fantasy;
+	font-size:32px;
+	padding:4px 15px 0px 15px;
+}
+.open {
+	padding-left:20px;
+	width:250px;
+	background-color:rgba(0,0,0,0);
+}
+
+.goBox{
+	position:fixed;
+	left:15%;
+	top:40%;
+}
+@media screen and (max-width: 700px) {
+	#intervalEnabler * {
+		display:inline-block;
+		width: 60px;
+	}
+	#intervalEnabler {
+		width:200px;
+	}
 }
