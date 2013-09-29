@@ -163,13 +163,13 @@ $(document).ready(function(){
     }
 
     var setGo = function(){
-    	if (go.hasClass("on")){
-    		go.removeClass("on")
-    	}
-    	go.one("click",function(){
-    		go.addClass("on")
-    		trialLoop()
-        })
+        	if (go.hasClass("on")){
+    		    go.removeClass("on")
+    	    }
+    	    go.one("click",function(){
+    		    go.addClass("on")
+    		    trialLoop()
+            })
     }
 
     var rightAnswer = function(){
@@ -216,22 +216,36 @@ $(document).ready(function(){
 	
 /** Sets up the trial loop, and starts the first trial */
 	var trialLoop = function(){
-		$('.score').removeClass('open')
-		$('.feedback').removeClass('helpText')
-		score = 0
 		scoreMultiplier = setScoreMultiplier()
-		$("#intervalEnabler .button").off("click")
-		setPickerButtons()
-		setTimeout(function(){
-			startTime = new Date();
-			$('.score').text('0 Points')
-			$('.timer').toggleClass('open')
-			$('.score').toggleClass('open')
-			setInterval(function(){
-    			$(".timer").text(30 - Math.floor((new Date() - startTime)/1000) + ' Seconds')
-    		},250)
-			trial()
-		},300)
+        console.log(scoreMultiplier)
+        if (scoreMultiplier > 0) {
+
+		    $('.score').removeClass('open')
+		    $('.feedback').removeClass('helpText')
+		    score = 0
+		    $("#intervalEnabler .button").off("click")
+		    setPickerButtons()
+		    setTimeout(function(){
+			    startTime = new Date();
+			    $('.score').text('0 Points')
+			    $('.timer').toggleClass('open')
+			    $('.score').toggleClass('open')
+			    setInterval(function(){
+    			        $(".timer").text(30 - Math.floor((new Date() - startTime)/1000) + ' Seconds')
+    		        },250)
+			    trial()
+		    },300)
+        }
+        else {
+            setTimeout(function(){
+                setGo()
+            },500)
+            $('.feedback').addClass('helpText')
+            $('.feedback').text('Please select at least two intervals to start.')
+            setTimeout(function(){
+                $('.feedback').removeClass('helpText')
+            },2000)
+        }
 	}
 
 	var setPickerButtons = function(){
